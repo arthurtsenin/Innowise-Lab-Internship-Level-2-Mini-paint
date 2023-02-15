@@ -33,8 +33,8 @@ export const Canvas = () => {
   const [snapshot, setSnapshot] = useState<ISnapshot>({
     data: new Uint8ClampedArray(0),
     colorSpace: 'srgb',
-    height: 400,
-    width: 700,
+    height: CANVAS_SIZE.height,
+    width: CANVAS_SIZE.with,
   })
   const [error, setError] = useState<string>('')
 
