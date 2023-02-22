@@ -63,6 +63,7 @@ npm build
 │    │   ├───containers
 │    │   │   ├───Canvas
 │    │   │   ├───Gallery
+│    │   │   |   └───PaintingContainer
 │    │   │   ├───Header
 │    │   │   ├───SignIn
 │    │   │   ├───SignUp
@@ -80,7 +81,8 @@ npm build
 │    ├───router
 │    ├───store
 │    │   └───slice
-│    └───types
+│    ├───types
+│    └───utils
 ├── .env
 ├── .eslintrc
 ├── .gitignore

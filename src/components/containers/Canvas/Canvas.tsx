@@ -7,14 +7,6 @@ import { showErrorCanvas } from '@/components/views/toasts/showErroeCanvas'
 import { writePaintingsToDataBase } from '@/api/dbHelper'
 import { CANVAS_SIZE } from '@/constants/canvas'
 import { TOOLS } from '@/constants/canvas'
-import {
-  drawCircle,
-  drawRect,
-  drawTriangle,
-  drawLine,
-  drawStar,
-  drawHexagon,
-} from './utils/figures'
 import { ISnapshot } from '@/types/types'
 import SaveIcon from '@mui/icons-material/Save'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
@@ -71,48 +63,17 @@ export const Canvas = () => {
     if (!isDrawing) return
     ctx!.putImageData(snapshot, 0, 0)
 
-    switch (tool) {
-      case TOOLS.eraser.name:
-        ctx!.strokeStyle = tool === TOOLS.eraser.name ? '#fff' : color
-        ctx!.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
-        ctx!.stroke()
-        break
-      case TOOLS.rectangle.name:
-        drawRect(e, fillColor, ctx, prevPosition)
-        break
-      case TOOLS.circle.name:
-        drawCircle(e, fillColor, ctx, prevPosition)
-        break
-      case TOOLS.triangle.name:
-        drawTriangle(e, fillColor, ctx, prevPosition)
-        break
-      case TOOLS.line.name:
-        drawLine(e, ctx, prevPosition)
-        break
-      case TOOLS.star.name:
-        drawStar(e, fillColor, ctx, prevPosition)
-        break
-      case TOOLS.hexagon.name:
-        drawHexagon(e, fillColor, ctx, prevPosition)
-        break
-      default:
-        ctx!.strokeStyle = tool === TOOLS.eraser.name ? '#fff' : tool
-        ctx!.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
-        ctx!.stroke()
-        break
-    }
+    TOOLS[tool].command(e, ctx, prevPosition, fillColor, color)
   }
 
   const onMouseUp = () => {
     dispatch(toolIsDrawing(false))
   }
 
-  const downloadPainting = async () => {
+  const downloadPainting = () => {
     const image = canvasRef!.current!.toDataURL('image/png')
-    const blob = await (await fetch(image)).blob()
-    const blobURL = URL.createObjectURL(blob)
     const link = document.createElement('a')
-    link.href = blobURL
+    link.href = image
     link.download = 'image.png'
     link.click()
   }

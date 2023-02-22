@@ -19,3 +19,7 @@ export const UserHeaderContainer = styled(Box)`
   justify-content: space-between;
   align-items: center;
 `
+
+export const NavContainer = styled.div`
+  align-items: center;
+`

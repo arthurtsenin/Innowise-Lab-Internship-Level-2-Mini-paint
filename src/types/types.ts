@@ -42,6 +42,13 @@ export interface IRoute {
 export interface ITools {
   [key: string]: {
     name: string
+    command: (
+      e: React.MouseEvent<HTMLCanvasElement>,
+      ctx: CanvasRenderingContext2D | null,
+      prevPosition: TPrevPosition,
+      fillColor: boolean,
+      color: string,
+    ) => void
     icon: React.ComponentType<SvgIconProps>
   }
 }

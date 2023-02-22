@@ -44,25 +44,23 @@ export const ToolBar: FC = memo(() => {
   const setLineThickness = (e: SelectChangeEvent<number>) =>
     dispatch(changeLineThickness(+e.target.value))
 
-  const showToolButtons = useCallback(() => {
-    return Object.values(TOOLS).map((item) => {
-      const { name, icon: Icon } = item
-      return (
-        <Button
-          key={name}
-          onClick={() => dispatch(changeTool(name))}
-          color={setToolIconColor(name)}
-          sx={{ m: 1 }}
-          variant="contained">
-          <Icon />
-        </Button>
-      )
-    })
-  }, [dispatch, setToolIconColor])
-
   return (
     <ToolBarContainer>
-      <ToolButtonsContainer>{showToolButtons()}</ToolButtonsContainer>
+      <ToolButtonsContainer>
+        {Object.values(TOOLS).map((item) => {
+          const { name, icon: Icon } = item
+          return (
+            <Button
+              key={name}
+              onClick={() => dispatch(changeTool(name))}
+              color={setToolIconColor(name)}
+              sx={{ m: 1 }}
+              variant="contained">
+              <Icon />
+            </Button>
+          )
+        })}
+      </ToolButtonsContainer>
       <ToolButtonsControlContainer>
         <Box>Fill color:</Box>
         <Checkbox checked={fillColor} onChange={setFillColor} />

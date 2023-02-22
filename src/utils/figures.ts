@@ -2,9 +2,9 @@ import { TPrevPosition } from '@/types/types'
 
 export const drawRect = (
   e: React.MouseEvent<HTMLCanvasElement>,
-  fillColor: boolean,
   ctx: CanvasRenderingContext2D | null,
   prevPosition: TPrevPosition,
+  fillColor: boolean,
 ) => {
   if (!fillColor) {
     return ctx!.strokeRect(
@@ -24,9 +24,9 @@ export const drawRect = (
 
 export const drawCircle = (
   e: React.MouseEvent<HTMLCanvasElement>,
-  fillColor: boolean,
   ctx: CanvasRenderingContext2D | null,
   prevPosition: TPrevPosition,
+  fillColor: boolean,
 ) => {
   ctx!.beginPath()
   const radius = Math.sqrt(
@@ -39,9 +39,9 @@ export const drawCircle = (
 
 export const drawStar = (
   e: React.MouseEvent<HTMLCanvasElement>,
-  fillColor: boolean,
   ctx: CanvasRenderingContext2D | null,
   prevPosition: TPrevPosition,
+  fillColor: boolean,
 ) => {
   let rot = (Math.PI / 2) * 3
   let x = e.nativeEvent.offsetX
@@ -69,9 +69,9 @@ export const drawStar = (
 
 export const drawHexagon = (
   e: React.MouseEvent<HTMLCanvasElement>,
-  fillColor: boolean,
   ctx: CanvasRenderingContext2D | null,
   prevPosition: TPrevPosition,
+  fillColor: boolean,
 ) => {
   const shapeType = 6
   const angle = (2 * Math.PI) / shapeType
@@ -89,9 +89,9 @@ export const drawHexagon = (
 
 export const drawTriangle = (
   e: React.MouseEvent<HTMLCanvasElement>,
-  fillColor: boolean,
   ctx: CanvasRenderingContext2D | null,
   prevPosition: TPrevPosition,
+  fillColor: boolean,
 ) => {
   ctx!.beginPath()
   ctx!.moveTo(prevPosition.x, prevPosition.y)
@@ -110,4 +110,26 @@ export const drawLine = (
   ctx!.moveTo(prevPosition.x, prevPosition.y)
   ctx!.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
   ctx!.stroke()
+}
+
+export const eraser = (
+  e: React.MouseEvent<HTMLCanvasElement>,
+  ctx: CanvasRenderingContext2D | null,
+) => {
+  ctx!.strokeStyle = '#fff'
+  ctx!.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
+  ctx!.stroke()
+}
+
+export const brush = (
+  e: React.MouseEvent<HTMLCanvasElement>,
+  ctx: CanvasRenderingContext2D | null,
+  prevPosition: TPrevPosition,
+  fillColor: boolean,
+  color: string,
+) => {
+  ctx!.strokeStyle = color
+  ctx!.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
+  ctx!.stroke()
+  fillColor ? ctx!.fill() : ctx!.stroke()
 }

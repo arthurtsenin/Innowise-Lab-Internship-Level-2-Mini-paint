@@ -48,10 +48,8 @@ export const SignUp: FC = () => {
     setIsLoading(true)
     try {
       await createUser(data.email, data.password)
-      setIsLoading(false)
       showSuccessSignUp()
     } catch (e) {
-      setIsLoading(false)
       setError((e as Error).message)
       showErrorSignUp(error)
     } finally {

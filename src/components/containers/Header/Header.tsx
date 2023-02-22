@@ -12,7 +12,7 @@ import LoginIcon from '@mui/icons-material/Login'
 import BrushIcon from '@mui/icons-material/Brush'
 import ImageSearchIcon from '@mui/icons-material/ImageSearch'
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration'
-import { HeaderLink, HeaderContainer, UserHeaderContainer } from './Header.styles'
+import { HeaderLink, HeaderContainer, UserHeaderContainer, NavContainer } from './Header.styles'
 
 export const Header = memo(() => {
   const user = useTypedSelector((state) => state.user.user)
@@ -40,7 +40,7 @@ export const Header = memo(() => {
           <ColorLensIcon /> Mini Paint
         </Typography>
         {user && (
-          <div>
+          <NavContainer>
             <Button variant="text">
               <HeaderLink to={RoutesNames.PAINT}>
                 <BrushIcon />
@@ -53,7 +53,7 @@ export const Header = memo(() => {
                 <Typography> gallery</Typography>
               </HeaderLink>
             </Button>
-          </div>
+          </NavContainer>
         )}
         <UserHeaderContainer>
           <Switch color="default" checked={theme} onChange={changeTheme} />

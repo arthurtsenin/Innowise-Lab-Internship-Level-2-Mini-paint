@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ToolState, TPrevPosition } from '@/types/types'
 
 const initialState: ToolState = {
-  tool: 'brush',
+  tool: 'line',
   color: '#000000',
   lineThickness: 1,
   isDrawing: false,

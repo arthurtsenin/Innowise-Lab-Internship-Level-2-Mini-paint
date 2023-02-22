@@ -46,10 +46,8 @@ export const SignIn: FC = memo(() => {
     setIsLoading(true)
     try {
       await signIn(data.email, data.password)
-      setIsLoading(false)
       showSuccessSignIn()
     } catch (e) {
-      setIsLoading(false)
       setError((e as Error).message)
       showErrorSignIn(error)
     } finally {
