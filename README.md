@@ -4,6 +4,10 @@
 
 <a href="https://drive.google.com/file/d/19cb4whI_HUVPzuaPyaj5r6hGotIVnhho/view">Watch task</a>
 
+## Demo
+
+<a href="https://mini-paint-app.netlify.app/">Mini-paint</a>
+
 ## How to run the app
 
 **Install**
